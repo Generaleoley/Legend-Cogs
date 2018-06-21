@@ -1,3 +1,4 @@
+#Is this even nessesary since the clan chest has been removed?
 import discord
 from discord.ext import commands
 from .utils.dataIO import dataIO, fileIO
