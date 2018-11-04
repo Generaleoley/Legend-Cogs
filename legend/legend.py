@@ -27,6 +27,7 @@ rules_text = """**Here are some Legend Family Discord server rules.**\n
 • Obtaining credits or reputations using unethical ways like cheating or trading is strictly forbidden
 • Respect and do not subvert moderators and managers.
 • A good rule is to talk to people as if you were talking to them face to face.
+• Do not sell, trade, or buy accounts is in the Legend Family server. It's against the Supercell terms of service and can cause you to be scammed or banned from your account.
 • There are more rules that vary from clan to clan. Ask your clan leader for the rules of your clan.\n
 **Clan Transfer**\n
 • If you are transferring from one Legend Family clan to another, please contact your destination clan's clan leader first, 
@@ -230,7 +231,7 @@ class legend:
     def getLeagueEmoji(self, trophies):
         """Get clan war League Emoji"""
         mapLeagues = {
-            "legendleague": [3000, 5000],
+            "legendleague": [3000, 9999],
             "gold3league": [2500, 2999],
             "gold2league": [2000, 2499],
             "goldleague": [1500, 1999],
