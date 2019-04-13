@@ -96,6 +96,11 @@ class FourInARow:
                                                                                         "botDifficulty": self.settings["BOT_SETTINGS"]["DEFAULT_DIFFICULTY"], 
                                                                                         "winner": "unknown"}
                 fileIO(GAMES, "save", self.game)
+                server = ctx.message.server
+                roulette_role = discord.utils.get(server.roles, name="4Row")
+                await self.bot.edit_role(server, roulette_role, mentionable=True)
+                await self.bot.say("{}".format(roulette_role.mention))
+                await self.bot.edit_role(server, roulette_role, mentionable=False)
                 joinData = await self.join_game(ctx, user)# returns {"delMsg": bool, "showMsg": bool, "drawBoard": bool, "msg": str}
                 if joinData["delMsg"]:
                     await self.delete_message(ctx)
@@ -430,7 +435,7 @@ class FourInARow:
                                         await self.update_score(ctx)# Update score of all players.
                                         stopGame = True
                                     elif self.is_winner(ctx, self.TOKENS[CH_PLAYERS["TOKENS"][usr]][0]):
-                                        comment = ("\n{}  Owns this game with his {}'s{}".format(user.mention, 
+                                        comment = ("\n{} ` Owns this game with his {}'s`{}".format(user.mention, 
                                                                                                                                 self.TOKENS[CH_PLAYERS["TOKENS"][usr]][0], 
                                                                                                                                 self.TOKENS[CH_PLAYERS["TOKENS"][usr]][1]))
                                         self.game["CHANNELS"][ctx.message.channel.id]["winner"] = user.id# Needed for update_score.
@@ -443,7 +448,7 @@ class FourInARow:
                             await self.draw_board(ctx, comment)
                             # If game needs to be stopped by above conditions.
                             if stopGame == True:
-                                comment = "\nCongratulations, you won 2500 credits."
+                                comment = "\nCongratulations, you won 8888 credits."
                                 await self.draw_board(ctx, comment, True)# Dm board to user.
                                 await self.bot.say("` Game ended`")
                                 await self.stop_game(ctx)
@@ -842,7 +847,7 @@ class FourInARow:
                         fileIO(PLAYERS, "save", self.players)
                         # Output msg.
                         if activePlayers <= 1:
-                            msg = ("\n I need at least one more player. \nType: '{}4row join' to join this game...\n{}".format(self.PREFIXES[0], msg))
+                            msg = ("\n` I need at least one more player. \nType: '{}4row join' to join this game...`\n{}".format(self.PREFIXES[0], msg))
                             return {"delMsg": True, "showMsg": True, "drawBoard": True, "msg": msg}
                         elif activePlayers >= 2:
                             msg = ("\n` Type '{}4row start' to play`{}".format(self.PREFIXES[0], msg))
@@ -1246,7 +1251,7 @@ class FourInARow:
 
                 userWinner = discord.utils.get(ctx.message.server.members, id = userId)
                 bank = self.bot.get_cog('Economy').bank
-                pay = bank.get_balance(userWinner) + 2500
+                pay = bank.get_balance(userWinner) + 8888
                 bank.set_credits(userWinner, pay)
 
                 stats = self.players["PLAYERS"][userId]["STATS"]
